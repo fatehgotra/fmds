@@ -1,0 +1,428 @@
+@media screen and (max-width:767px){
+    .loginform{
+        max-width: 100%;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .loginform .card-body{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .rectangle {
+        left: 0;
+        right: auto;
+    }
+    .circle {
+        right: -10px;
+        left: auto;
+    }
+    .circle2 {
+        bottom: -35px;
+        left: 0;
+        right: auto;
+    }
+    .loginBtn{
+        padding: 0.5rem 0.9rem;
+    }
+    .sociallogin .loginBtn {
+        min-width: 130px;
+    }
+    .loginBtn--facebook {
+        margin-right: 5px;
+    }
+    .remember_me label.form-check-label {
+        margin-left: 0px !important;
+    }
+    label {
+        font-size: 12px;
+    }
+    .forgot p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .loginform h5{
+        font-size: 15px;
+    }
+    .loginform h6{
+        font-size: 13px;
+    }
+    .loginform .btn-userlogin {
+        font-size: 13px;
+        padding: 0.5rem 0.9rem;
+    }
+    .donthaveaccount p{
+        font-size: 13px;
+    }
+    .navbar-custom .topbar-menu .nav-link {
+        margin: 0 4px;
+    }
+    .page-title-box .page-title{
+        line-height: 40px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+    .tabPages ul {
+        display: inline-block !important;
+        width: 100%;
+    }
+    .tabPages ul li{
+        width: 48%;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 10px;
+    }
+    .tabPages ul li:nth-child(2){
+        margin-right: 0px;
+        width: 50%;
+    }
+    .tabPages ul li:nth-child(4){
+        margin-right: 0px;
+        width: 50%;
+    }
+    .tabPages ul li:last-child{
+        margin-right: 0px;
+        width: 50%;
+    }
+    .m_btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .Trial {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .leftside-menu{
+        padding-top: 20px;
+    }
+    .filterBtn {
+        display: block !important;
+        margin-top: 0px !important;
+    }
+    .filterBtn .btn {
+        min-width: 100%;
+        padding: 0.40rem 0.8rem;
+        margin-bottom: 10px;
+        margin-right: 0px !important;
+    }
+    .filterBtn .btn:last-child{
+        margin-bottom: 0px;
+    }
+    .table th, .table td{
+        padding: 0.50rem 0.50rem;
+    }
+    .reminderT {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    .reminderT .page-title {
+        line-height: 30px;
+        margin-bottom: 0px;
+    }
+    .add-Template {
+        margin-top: 0px !important;
+    }
+    .form-lg {
+        height: 40px !important;
+    }
+    .add-Template h4 {
+        margin-bottom: 20px !important;
+    }
+    .reminder .table tr td.table-action {
+        min-width: 90px;
+    }
+    .reminder .table .action-icon img {
+        max-width: 24px;
+        height: 24px;
+    }
+    .table>thead tr th {
+        font-size: 14px;
+    }
+    .contact-new {
+        padding: 0;
+        border: none;
+        background-color: #0000;
+    }
+    .date span.input-group-addon {
+        padding-top: 8px;
+    }
+    .contact-new h4 {
+        margin-bottom: 20px !important;
+    }
+    .contact-new-right .card-body {
+        padding: 0px;
+    }
+    .contact-new-right {
+        background-color: #0000;
+    }
+    .contact-new-right .updateBtn {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        text-align: end;
+        margin-top: 30px;
+    }
+    .List .table tr td.table-action {
+        min-width: 90px;
+    }
+    .List .table .action-icon img {
+        max-width: 24px;
+        height: 24px;
+    }
+    .campaigns_list .table tr td.table-action {
+        min-width: 90px;
+        justify-content: end;
+    }
+    .campaigns_list .table .action-icon img {
+        max-width: 24px;
+        height: 24px;
+    }
+    .tabPages ul li a.btn{
+        height: 40px;
+    }
+    .table tbody tr td.table-action.float-end {
+        float: none !important;
+    }
+    .campaigns_view_btn {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 15px;
+    }
+    .campaigns_view_btn a.btn.btn-primary {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0px !important;
+    }
+    .campaigns_view .table tbody tr td {
+        min-width: 90px;
+    }
+    .btn-primary{
+        min-width: auto;
+    }
+    .team_members .table tr td.table-action {
+        min-width: 140px;
+    }
+    .team_members .table .action-icon img {
+        max-width: 24px;
+        height: 24px;
+    }
+    .end-bar{
+        width: 340px;
+    }
+    .tickets .table tr td.table-action {
+        min-width: 125px;
+    }
+    .ai-bots h5 {
+        margin-bottom: 20px !important;
+    }
+    .Bots_Create p.Comma {
+        margin-bottom: 0px;
+        font-size: 13px;
+    }
+    .Bots_Create textarea.form-control {
+        font-size: 13px;
+    }
+    .Bots_edit textarea.form-control {
+        font-size: 13px;
+    }
+    .Bots_edit p.Comma {
+        margin-bottom: 0px;
+        font-size: 13px;
+    }
+    .automations .bg-light-blue {
+        background-color: #0000;
+        padding: 0;
+    }
+    .automationForm .col-sm-3 {
+        background-color: #fff;
+        margin: 0;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 0;
+        padding-right: 0px;
+    }
+    .automations .table tr td.table-action {
+        min-width: 120px;
+        justify-content: end;
+    }
+    .automations .table .action-icon img {
+        max-width: 24px;
+        height: 24px;
+    }
+    .bg-light-blue {
+        background-color: #0000;
+        padding: 0px;
+    }
+    .automation-widget{
+        margin-bottom: 20px;
+    }
+    .integration .table tr td.table-action {
+        min-width: 190px;
+    }
+    .integration-add form p {
+        font-size: 13px;
+    }
+    .settings .tabPages {
+        margin-bottom: 0px !important;
+    }
+    .settings .tabPages ul li:last-child {
+        margin-bottom: 0px;
+    }
+    .settings h4 {
+        margin-bottom: 20px !important;
+    }
+    .settings .card .card-body form p {
+        font-size: 13px !important;
+    }
+    .getting-started h4 {
+        margin-bottom: 20px !important;
+    }
+
+    .getting-started #teamPermission p {
+        font-size: 13px !important;
+        margin-bottom: 12px !important;
+    }
+    .wallet .btn-primary {
+        height: 41px;
+        margin-top: 0px;
+    }
+    .getting-started .card .card-body p {
+        font-size: 13px !important;
+    }
+    .Packages .card .card-body p {
+        font-size: 13px !important;
+    }
+    .page-title-box .page-title-right {
+        display: block;
+        margin-top: 0px;
+    }
+    .callSms {
+        position: relative;
+    }
+    .callSms .dropdown-menu-animated.dropdown-menu-end[style] {
+        left: 72px !important;
+        right: auto !important;
+    }
+    .callSms .arrow-top {
+        top: -8px;
+        right: auto;
+        left: 88px;
+    }
+    .language {
+        position: relative;
+    }
+    .language .dropdown-menu-animated.dropdown-menu-end[style] {
+        left: 75px !important;
+        right: auto !important;
+    }
+    .language .arrow-top {
+        top: -8px;
+        right: 28px;
+    }
+    .company-owner h4 {
+        margin-bottom: 20px !important;
+    }
+    .company-owner .btn-danger {
+        min-width: auto !important;
+    }
+    .company-owner h5 {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .reminderT span {
+        font-size: 14px;
+    }
+    .team_members .page-title-box.reminderT span {
+        font-size: 14px;
+    }
+    .Ctable-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .rectangle-bg {
+        max-width: 80px;
+        top: 40px;
+        left: 65px;
+        right: auto;
+    }
+    .content-page .container-fluid {
+        padding-left: 12px;
+    }
+    .padding-right {
+        padding-right: 0px !important;
+    }
+    .pedding-left {
+        padding-left: 0px !important;
+    }
+    .lg-navs .nav-item a {
+        min-width: 180px;
+    }
+    .adminTicket .filterBtn a.btn-link {
+        text-align: end;
+    }
+    .auth_admin {
+        background: none;
+    }
+    .auth_admin .admin_form_m {
+        display: block !important;
+    }
+    .auth_admin .admin_form_m .logo-dark img {
+        max-width: 100%;
+        height: auto;
+    }
+    .auth_admin .admin_form_m .card-body {
+        padding: 1.5rem 0;
+    }
+}
+@media (min-width: 1280px) and (max-width: 1435px) {
+    .loginform {
+        margin: 30px auto;
+    }
+
+    .loginform h6 {
+        font-size: 14px;
+    }
+
+    .loginform h5 {
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    .form-lg {
+        height: 44px !important;
+    }
+
+    .forgot p,
+    .donthaveaccount p {
+        font-size: 14px;
+    }
+    .adminloginform .forgot p {
+        font-size: 14px;
+    }
+
+    .btn-userlogin {
+        padding: 11px 12px;
+        font-size: 16px;
+    }
+    .chat-listing {
+        min-height: 25vh !important;
+        max-height: 60vh !important;
+        overflow-x: hidden !important;
+        overflow: hidden scroll;
+        position: relative;
+    }
+    .chatcardright {
+        height: 100vh;
+        overflow-y: scroll;
+        margin-bottom: 0px;
+    }
+    .create {
+        /* height: 100vh; */
+        max-height: 100vh !important;
+        min-height: 100vh !important;
+    }
+
+}
