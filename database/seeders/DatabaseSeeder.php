@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Faker\Generator;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
                 'gender'  => $faker->randomElement(['Male','Female']),
                 'status' => 1,
                 'email_verified_at' =>now(),
-                'password' =>'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+                'password' =>Hash::make('password')
             ]);
         }
 
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Jhon Doe',
             'email' => 'admin@fmds.com',
             'phone' => '0123456789',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'password' => Hash::make('password')
         ]);
         $applications = [
             'Application for registration & practice licence (INTERNSHIP)',
