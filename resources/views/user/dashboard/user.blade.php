@@ -19,7 +19,7 @@
                 <div class="col-xl-12 col-12">
                     <ul class="list-unstyled d-flex justify-content-between mb-0">
                         <li>
-                            <a href="{{ route('user.application.index1') }}" class="btn btn-primary">Applications</a>
+                            <a href="{{ route('user.application.index') }}" class="btn btn-primary">Applications</a>
                         </li>
                         <li>
                             <a href="#" class="btn btn-primary">Tickets</a>
