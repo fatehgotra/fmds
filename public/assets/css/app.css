@@ -22563,3 +22563,7 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:first-chi
 .wd-aside{
   margin-top: 3%;
 }
+
+.w-33{
+  width: 33%!important;
+ }

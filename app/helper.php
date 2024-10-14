@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Administrator;
+use App\Models\applicationDocs;
 use App\Models\ChatBoxMessage;
 use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
@@ -310,4 +311,17 @@ function app_value($name,$key){
     return '';
  }
 
+}
+
+function get_preview($key){
+    
+    $doc = applicationDocs::where([
+        'user_id' =>auth()->user()->id,
+        'application_id' =>session()->get('application_id'),
+        'doc' => $key
+
+    ])->first();
+
+    $result = !is_null($doc) ? ['file' => asset('storage/uploads/applications/docs').'/'.$doc->file,'type' =>$doc->type ] : [];
+    return $result;
 }

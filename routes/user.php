@@ -107,8 +107,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::post('criminal-convictions',[RpliController::class,'ProfesionalIndemnity'])->name('profesional-indeminity');
             Route::post('declare-intrest-business',[RpliController::class,'criminalConvictions'])->name('criminal-convictions'); 
             Route::post('declaration-by-applicant',[RpliController::class,'declareIntrestBusiness'])->name('declare-intrest-business');
-            Route::post('supporting-documents',[RpliController::class,'applicantDeclaration'])->name('declaration-by-applicant');
-            Route::post('payment',[RpliController::class,'supportingDocument'])->name('supporting-documents');
+            Route::post('documents',[RpliController::class,'applicantDeclaration'])->name('declaration-by-applicant');
+            Route::get('documents',[RpliController::class,'supportingDocument'])->name('supporting-documents');
+
+            Route::post('process_doc',[RpliController::class,'processDoc'])->name('process_doc');
 
         });
         
