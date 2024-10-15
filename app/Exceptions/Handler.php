@@ -6,6 +6,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Throwable;
 use Illuminate\Http\Exceptions\PostTooLargeException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -49,11 +50,20 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof PostTooLargeException) {
-       
-           return redirect()->back()->with('error', 'Please upload less than 10 mb file.');
+      if ($exception instanceof PostTooLargeException) {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'Please upload a file smaller than 10 MB.'], 413);
         }
+        return redirect()->back()->with('error', 'Please upload less than 10 MB file.');
+    }
 
+    if ($exception instanceof MethodNotAllowedHttpException) {
+        if ($request->expectsJson()) {
+            return response()->json(['error' => 'This method is not allowed for the requested route.'], 405);
+        }
+        return redirect()->route('user.dashboard')->with('error', 'Sorry, this request is not allowed.');
+    }
+    
         return parent::render($request, $exception);
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User\Applications;
 use App\Models\Applications;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
+use App\Models\RpliApplication;
 use Exception;
 
 class RpliController extends Controller
@@ -113,16 +115,16 @@ class RpliController extends Controller
     foreach ($request->except('_token') as $key => $part) {
 
       try {
-      
+
 
         $file = $request->file($key);
         $mime  = $file->getClientMimeType();
-        $size  =  number_format( $file->getSize() / 1048576,2);
-       
+        $size  =  number_format($file->getSize() / 1048576, 2);
+
         if (!str_contains($mime, 'image') && !str_contains($mime, 'pdf')) {
           return redirect()->back()->with('error', 'Only images and pdf are allowed.');
         }
-        if($size > 10 ){
+        if ($size > 10) {
           return redirect()->back()->with('error', 'Please upload less than 10 mb file.');
         }
 
@@ -130,7 +132,7 @@ class RpliController extends Controller
         $ext = $file->getClientOriginalExtension();
         $name = time() . '.' . $ext;
         $file->storeAs('uploads/applications/docs', $name, 'public');
-       
+
         applicationDocs::updateOrCreate(
           [
             'user_id' => auth()->user()->id,
@@ -151,5 +153,63 @@ class RpliController extends Controller
         return redirect()->back()->with('error', 'Something went wrong with your file.');
       }
     }
+  }
+
+  public function payment()
+  {
+    $count_docs = applicationDocs::where([
+      'user_id' => auth()->user()->id,
+      'application_id' => session()->get('application_id')
+    ])->count();
+    if ($count_docs < 8) {
+      return redirect()->back()->with('error', 'Please upload all required docs.');
+    }
+    return view('user.application.registration-practice-licence-internship.payment');
+  }
+
+  public function paymentInitiate(Request $request)
+  {
+
+    $user_id = auth()->user()->id;
+    $application_id = session()->get('application_id');
+
+    $user_app = [
+      'user_id' => $user_id,
+      'application_id' => $application_id,
+    ];
+    $application_data = array_merge(
+      $user_app,
+      session()->get('personal_info'),
+      session()->get('primary_qualification'),
+      session()->get('other_qualifications'),
+      session()->get('disciplinary_enquiries'),
+      session()->get('medical_fitness'),
+      session()->get('profesional_indemnity'),
+      session()->get('criminal_convictions'),
+      session()->get('declare_business_interest'),
+      session()->get('applicant_declaration'),
+    );
+
+    RpliApplication::create($application_data);
+    ApplicantApplications::create([
+      'user_id'       => $user_id,
+      'application_id'=>$application_id,
+      'pay_mode' => $request->pay_mode,
+      'amount'   =>200,
+      'status'   => 'submitted'
+    ]);
+    
+    session()->forget('application_id');
+    session()->forget('personal_info');
+    session()->forget('primary_qualification');
+    session()->forget('other_qualifications');
+    session()->forget('disciplinary_enquiries');
+    session()->forget('medical_fitness');
+    session()->forget('profesional_indemnity');
+    session()->forget('criminal_convictions');
+    session()->forget('declare_business_interest');
+    session()->forget('applicant_declaration');
+
+    return redirect()->route('user.application.index')->with('success', 'Application submited successfully,Please check your email for application and transaction details.');
   }
 }

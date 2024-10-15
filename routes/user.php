@@ -109,8 +109,9 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::post('declaration-by-applicant',[RpliController::class,'declareIntrestBusiness'])->name('declare-intrest-business');
             Route::post('documents',[RpliController::class,'applicantDeclaration'])->name('declaration-by-applicant');
             Route::get('documents',[RpliController::class,'supportingDocument'])->name('supporting-documents');
-
             Route::post('process_doc',[RpliController::class,'processDoc'])->name('process_doc');
+            Route::get('payment',[RpliController::class,'payment'])->name('payment');
+            Route::post('payment-initiate',[RpliController::class,'paymentInitiate'])->name('payment-initiate');
 
         });
         

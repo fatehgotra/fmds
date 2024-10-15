@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Administrator;
+use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
 use App\Models\ChatBoxMessage;
 use App\Models\Country;
@@ -37,7 +38,7 @@ function is_customer()
 }
 
 function getTimezone()
-{          
+{
     return getCustomer()->country->timezone ?? config('app.timezone');
     return loginUser()->getTable() == 'teams' ? Customer::find(getCustomerId()) : Auth::guard('customer')->user();
 }
@@ -47,8 +48,9 @@ function is_team()
     return loginUser()->getTable() == 'teams' ? true : false;
 }
 
-function is_admin(){
-  return loginUser()->getTable() == 'teams' && loginUser()->is_admin == 1 ? true : false;
+function is_admin()
+{
+    return loginUser()->getTable() == 'teams' && loginUser()->is_admin == 1 ? true : false;
 }
 
 if (!function_exists('checkProfileCompleted')) {
@@ -64,7 +66,7 @@ if (!function_exists('checkProfileCompleted')) {
         }
     }
 }
-    
+
 if (!function_exists('checkProfilePackage')) {
 
     function checkProfilePackage()
@@ -74,8 +76,8 @@ if (!function_exists('checkProfilePackage')) {
 
             if (empty($user->company_name) || empty($user->company_name)) {
                 return false;
-            }else{
-                 return true;;
+            } else {
+                return true;;
             }
         }
     }
@@ -90,8 +92,8 @@ if (!function_exists('checkProfileSetting')) {
 
             if (empty($user->package_id)) {
                 return false;
-            }else{
-                 return true;;
+            } else {
+                return true;;
             }
         }
     }
@@ -297,31 +299,43 @@ function reset2fa()
     }
 }
 
-function all_countries(){
-    $countries = Country::get(['name','id']);
+function all_countries()
+{
+    $countries = Country::get(['name', 'id']);
     return $countries;
 }
 
-function app_value($name,$key){
+function app_value($name, $key)
+{
 
- if( !is_null( session()->get($name) ) ){
-    $ses = session()->get($name);
-    return $ses[$key] ?? '';
- } else {
-    return '';
- }
-
+    if (!is_null(session()->get($name))) {
+        $ses = session()->get($name);
+        return $ses[$key] ?? '';
+    } else {
+        return '';
+    }
 }
 
-function get_preview($key){
-    
+function get_preview($key)
+{
+
     $doc = applicationDocs::where([
-        'user_id' =>auth()->user()->id,
-        'application_id' =>session()->get('application_id'),
+        'user_id' => auth()->user()->id,
+        'application_id' => session()->get('application_id'),
         'doc' => $key
 
     ])->first();
 
-    $result = !is_null($doc) ? ['file' => asset('storage/uploads/applications/docs').'/'.$doc->file,'type' =>$doc->type ] : [];
+    $result = !is_null($doc) ? ['file' => asset('storage/uploads/applications/docs') . '/' . $doc->file, 'type' => $doc->type] : [];
     return $result;
+}
+
+function is_applied($application_id)
+{
+    $application = ApplicantApplications::where([
+        'user_id' => auth()->user()->id,
+        'application_id' => $application_id
+    ])->first();
+
+    return !is_null($application) ? true : false;
 }

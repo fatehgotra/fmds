@@ -29,7 +29,7 @@ class ApplicationsController extends Controller
         if( is_null($application) ){
             return redirect()->back()->with('error','Application not found');
         }
-        session()->put('application',$application);
+      //  session()->put('application',$application);
         session()->put('application_id',$id);
         switch ($id) {
             case 1:

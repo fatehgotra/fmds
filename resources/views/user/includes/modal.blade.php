@@ -71,3 +71,15 @@
 </script>
 @endif
 
+@if ( !is_null(session()->get('exception')) )
+<script>
+    var msg = '{{$message}}';
+    jQuery(document).ready(function($){
+        $('#error-modal').find('.fw-light').html(msg);
+        $('#error-modal').modal('show');
+    });
+</script>
+
+@endif
+
+

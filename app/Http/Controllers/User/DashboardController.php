@@ -28,6 +28,8 @@ class DashboardController extends Controller
 
     public function index()
     {
+        
+
         $dataStructure = [
             'Applied' => array_fill(0, 30, 0),
             'Approved' => array_fill(0, 30, 0),

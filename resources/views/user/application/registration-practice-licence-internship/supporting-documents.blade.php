@@ -4,7 +4,6 @@
 
 @include('user.application.header')
 
-<h3>10. Supporting Documents required</h3>
 
 <div class="card dashboard-bg">
     <div class="section active-section card-body" id="section1">
@@ -113,7 +112,9 @@
 
 
             <button class="btn btn-dark mt-4" type="button" onclick="{ $('#backForm').submit() }">Back</button>
+            <form action="{{ route('user.rpli.payment') }}">
             <button type="submit" class="btn btn-primary mt-4 float-end">Next</button>
+            </form>
         </div>
     </div>
 </div> <!-- container -->

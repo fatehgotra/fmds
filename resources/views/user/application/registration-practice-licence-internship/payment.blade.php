@@ -5,18 +5,17 @@
 @include('user.application.header')
 
 <h3>10. Supporting Documents required</h3>
-<form method="post" action="">
+<form method="post" action="{{ route('user.rpli.payment-initiate') }}">
     @csrf
     <div class="card dashboard-bg">
         <div class="section active-section card-body" id="section1">
             <div class="form-group">
             <div class="mb-3">
                     <label class="form-label required">Preferred Method of Payment:</label>
-                    <select class="form-select" required>
-                        <option value="" disabled selected>Select Payment Method</option>
-                        <option>Transfer Credit on our ANZ Account # 10737532</option>
-                        <option>EFTPOS (at Secretariat - Charges may apply)</option>
-                        <option>Cheque</option>
+                    <select name="pay_mode" class="form-select" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="Anz">Transfer Credit on our ANZ Account # 10737532</option>
+                        <option value="bsp">Bank of south pacific gateway (BSP)</option>
                     </select>
                     <small class="text-muted">Note: For a complete application, the applicable fee for registration/license must be paid and attached with this renewal form.</small>
                 </div>
@@ -64,8 +63,8 @@
                 </div>
     
     
-                <button class="btn btn-dark mt-4" onclick="{ history.back() }">Back</button>
-                <button class="btn btn-primary mt-4 float-end" onclick="nextSection()">Next</button>
+                <button class="btn btn-dark mt-4" onclick="{  }">Back</button>
+                <button type="submit" class="btn btn-primary mt-4 float-end" >Next</button>
             </div>
         </div>
     </div> <!-- container -->
