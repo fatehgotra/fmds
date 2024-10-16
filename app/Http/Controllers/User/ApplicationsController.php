@@ -29,14 +29,14 @@ class ApplicationsController extends Controller
         if( is_null($application) ){
             return redirect()->back()->with('error','Application not found');
         }
-      //  session()->put('application',$application);
+        session()->put('application',$application);
         session()->put('application_id',$id);
         switch ($id) {
             case 1:
                 return view('user.application.registration-practice-licence-internship.personal-info',compact('application'));
                 break;
             case 2:
-                return redirect()->back()->with('error','Application not ready yet.');
+                return view('user.application.annual-registration-renewal.personal-info');
                 break;
             case 3:
                 return redirect()->back()->with('error','Application not ready yet.');

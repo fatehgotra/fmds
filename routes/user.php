@@ -17,6 +17,7 @@ use App\Http\Controllers\User\CannedResponseController;
 use App\Http\Controllers\User\GeneralSettingsController;
 use App\Http\Controllers\User\GroupController;
 use App\Http\Controllers\User\AiSuggestionController;
+use App\Http\Controllers\User\Applications\ArrController;
 use App\Http\Controllers\User\Applications\RpliController;
 use App\Http\Controllers\User\ApplicationsController;
 use App\Http\Controllers\User\IntegrationController;
@@ -93,9 +94,13 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::group(['middleware' => ['profile.check']], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('ticket',TicketsController::class);
+        Route::resource('integration',IntegrationController::class);
 
         Route::post('initiate-application',[ApplicationsController::class,'initiateApplication'])->name('initiate-application');
         Route::resource('application',ApplicationsController::class);
+
+        //Registration Practice Licence Internship
 
         Route::group(['prefix' => 'rpli', 'as' => 'rpli.'], function () {
 
@@ -114,9 +119,23 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::post('payment-initiate',[RpliController::class,'paymentInitiate'])->name('payment-initiate');
 
         });
+
+        //Annual Registration Renewal
+
+        Route::group(['prefix' => 'arr', 'as' => 'arr.'], function () {
+
+            Route::post('process-employment-practice',[ArrController::class,'personalInfo'])->name('personal-info');
+            Route::post('employment-practice',[ArrController::class,'employmentPractice'])->name('employment-practice');
+            Route::post('previous-years-practice',[ArrController::class,'renewalIn'])->name('renewal-in');
+            Route::post('other-qualifications',[ArrController::class,'previousPractices'])->name('previous-years-practice');
+            Route::post('disciplinary-enquires',[ArrController::class,'otherQualifications'])->name('other-qualifications');
+           
+            Route::get('payment',[ArrController::class,'payment'])->name('payment');
+            Route::post('payment-initiate',[ArrController::class,'paymentInitiate'])->name('payment-initiate');
+
+        });
         
-        Route::resource('ticket',TicketsController::class);
-        Route::resource('integration',IntegrationController::class);
+       
     });
 
     Route::resource('contact',ContactController::class);
