@@ -129,7 +129,18 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::post('previous-years-practice',[ArrController::class,'renewalIn'])->name('renewal-in');
             Route::post('other-qualifications',[ArrController::class,'previousPractices'])->name('previous-years-practice');
             Route::post('disciplinary-enquires',[ArrController::class,'otherQualifications'])->name('other-qualifications');
+            Route::post('disciplinary-enquires',[ArrController::class,'otherQualifications'])->name('other-qualifications');
+            Route::post('medical-fitness',[ArrController::class,'disciplinaryEnquiries'])->name('disciplinary-enquires');
+            Route::post('professional-development',[ArrController::class,'medicalFitness'])->name('medical-fitness');
+            Route::post('professional-indemnity',[ArrController::class,'professionalDevelopment'])->name('professional-development');
            
+            Route::post('criminal-convictions',[ArrController::class,'ProfesionalIndemnity'])->name('profesional-indeminity');
+            Route::post('declare-intrest-business',[ArrController::class,'criminalConvictions'])->name('criminal-convictions'); 
+            Route::post('declaration-by-applicant',[ArrController::class,'declareIntrestBusiness'])->name('declare-intrest-business');
+            Route::get('documents',[ArrController::class,'supportingDocument'])->name('supporting-documents');
+            Route::post('documents',[ArrController::class,'applicantDeclaration'])->name('declaration-by-applicant');
+            Route::post('process_doc',[ArrController::class,'processDoc'])->name('process_doc');
+
             Route::get('payment',[ArrController::class,'payment'])->name('payment');
             Route::post('payment-initiate',[ArrController::class,'paymentInitiate'])->name('payment-initiate');
 

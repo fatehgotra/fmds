@@ -4,8 +4,8 @@
 
 @include('user.application.header')
 
-<h3>5. Medical Fitness to Practise</h3>
-<form method="post" action="{{ route('user.rpli.medical-fitness') }}">
+<h3>7. Medical Fitness to Practise</h3>
+<form method="post" action="{{ route('user.arr.medical-fitness') }}">
     @csrf
     <div class="card dashboard-bg">
         <div class="section active-section card-body" id="section1">
@@ -33,7 +33,7 @@
     </div> <!-- container -->
 </form>
 
-<form id="backForm" method="post" action="{{ route('user.rpli.other-qualifications') }}">
+<form id="backForm" method="post" action="{{ route('user.arr.other-qualifications') }}">
 @csrf
 <input type="hidden" name="back" value="1">
 </form>

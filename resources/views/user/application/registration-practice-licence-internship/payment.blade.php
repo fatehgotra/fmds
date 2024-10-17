@@ -5,7 +5,7 @@
 @include('user.application.header')
 
 <h3>10. Supporting Documents required</h3>
-<form method="post" action="{{ route('user.rpli.payment-initiate') }}">
+<form method="post" action="{{ route('user.arr.payment-initiate') }}">
     @csrf
     <div class="card dashboard-bg">
         <div class="section active-section card-body" id="section1">
@@ -23,6 +23,7 @@
                 <!-- Fee Schedule Table -->
                 <div class="mb-4">
                     <h5>Fee Schedule</h5>
+                  
                     <table class="table table-bordered">
                         <thead>
                             <tr>

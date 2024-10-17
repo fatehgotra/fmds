@@ -4,8 +4,8 @@
 
 @include('user.application.header')
 
-<h3>10. Supporting Documents required</h3>
-<form method="post" action="{{ route('user.rpli.payment-initiate') }}">
+<h3>13. Payment</h3>
+<form method="post" action="{{ route('user.arr.payment-initiate') }}">
     @csrf
     <div class="card dashboard-bg">
         <div class="section active-section card-body" id="section1">
@@ -32,28 +32,28 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Application fee Registration – Resident</td>
-                                <td>10</td>
+                                <td>Application fee Registration – resident</td>
+                                <td>20</td>
                             </tr>
                             <tr>
-                                <td>Application fee Registration – Non-Resident</td>
+                                <td>Application fee Registration – non-resident                                </td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td>Medical / Dental Practitioners in Government Services (Practice License Fee)</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Medical / Dental Practitioners in Private Practice (Practice License Fee)</td>
+                                <td>200</td>
+                            </tr>
+                            <tr>
+                                <td>Vocational Registration – Medical / Dental Practitioners (Practice License Fee)</td>
+                                <td>300</td>
+                            </tr>
+                            <tr>
+                                <td>Dental Therapist/ Dental Hygienist/ Dental Technician (Practice License Fee)</td>
                                 <td>50</td>
-                            </tr>
-                            <tr>
-                                <td>Medical Interns Practice License</td>
-                                <td>100</td>
-                            </tr>
-                            <tr>
-                                <td>Dental Interns Practice License</td>
-                                <td>100</td>
-                            </tr>
-                            <tr>
-                                <td>If you only intend to REGISTER & NOT PRACTISE, only registration fee applies</td>
-                                <td>N/A</td>
-                            </tr>
-                            <tr>
-                                <td>If you intend to PRACTISE only, PRACTICE LICENSE fee applied</td>
-                                <td>N/A</td>
                             </tr>
                         </tbody>
                     </table>

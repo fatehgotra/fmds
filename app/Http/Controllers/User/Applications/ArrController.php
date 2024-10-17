@@ -80,6 +80,14 @@ class ArrController extends Controller
     if (!isset($request->back) && isset($inputs)) {
       session()->put('medical_fitness', $inputs);
     }
+    return view('user.application.annual-registration-renewal.continuing-profesional-development');
+  }
+
+  public function professionalDevelopment(Request $request){
+    $inputs = $request->except('_token');
+    if (!isset($request->back) && isset($inputs)) {
+      session()->put('profesional_development', $inputs);
+    }
     return view('user.application.annual-registration-renewal.professional-indemnity');
   }
 
@@ -120,6 +128,73 @@ class ArrController extends Controller
     return view('user.application.annual-registration-renewal.supporting-documents');
   }
 
+  public function supportingDocument()
+  {
+    return view('user.application.annual-registration-renewal.supporting-documents');
+  }
+
+  public function processDoc(Request $request)
+  {
+    if (empty($request->allFiles())) {
+      return redirect()->back()->with('error', 'Please upload file.');
+    }
+
+    foreach ($request->except('_token') as $key => $part) {
+
+      try {
+
+
+        $file = $request->file($key);
+        $mime  = $file->getClientMimeType();
+        $size  =  number_format($file->getSize() / 1048576, 2);
+
+        if (!str_contains($mime, 'image') && !str_contains($mime, 'pdf')) {
+          return redirect()->back()->with('error', 'Only images and pdf are allowed.');
+        }
+        if ($size > 10) {
+          return redirect()->back()->with('error', 'Please upload less than 10 mb file.');
+        }
+
+        $type = (str_contains($mime, 'image')) ? 'image' : 'pdf';
+        $ext = $file->getClientOriginalExtension();
+        $name = time() . '.' . $ext;
+        $file->storeAs('uploads/applications/docs', $name, 'public');
+
+        applicationDocs::updateOrCreate(
+          [
+            'user_id' => auth()->user()->id,
+            'application_id' => session()->get('application_id'),
+            'doc' => $key
+          ],
+          [
+            'user_id' => auth()->user()->id,
+            'application_id' => session()->get('application_id'),
+            'doc' => $key,
+            'file' => $name,
+            'type' => $type
+          ]
+        );
+
+        return redirect()->back()->with('success', 'Processed successfully');
+      } catch (Exception $e) {
+        return redirect()->back()->with('error', 'Something went wrong with your file.');
+      }
+    }
+  }
+
+
+  public function payment()
+  {
+    $count_docs = applicationDocs::where([
+      'user_id' => auth()->user()->id,
+      'application_id' => session()->get('application_id')
+    ])->count();
+    if ($count_docs < 5) {
+      return redirect()->back()->with('error', 'Please upload all required docs.');
+    }
+    return view('user.application.annual-registration-renewal.payment');
+  }
+
   public function paymentInitiate(Request $request)
   {
 
@@ -151,7 +226,7 @@ class ArrController extends Controller
       'amount'   =>200,
       'status'   => 'submitted'
     ]);
-    session()->forget('application');
+    
     session()->forget('application_id');
     session()->forget('personal_info');
     session()->forget('primary_qualification');

@@ -29,7 +29,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                      
-                        <input type="date" name="py_date2" value="{{ old('py_date2',app_value('previous_year_practise','py_date2')) }}" class="form-control" required>
+                        <input type="date" name="py_date2" value="{{ old('py_date2',app_value('previous_year_practise','py_date2')) }}" class="form-control" >
                     </div>
                     <div class="col-md-4">
                        
@@ -44,7 +44,7 @@
                 <div class="row mb-3">
                     <div class="col-md-4">
                         
-                        <input type="date" name="py_date3" value="{{ old('py_date3',app_value('previous_year_practise','py_date3')) }}" class="form-control" required>
+                        <input type="date" name="py_date3" value="{{ old('py_date3',app_value('previous_year_practise','py_date3')) }}" class="form-control" >
                     </div>
                     <div class="col-md-4">
                        

@@ -4,8 +4,8 @@
 
 @include('user.application.header')
 
-<h3>8. Declare Interest in Relevant Business</h3>
-<form method="post" action="{{ route('user.rpli.declare-intrest-business') }}">
+<h3>11. Declare Interest in Relevant Business</h3>
+<form method="post" action="{{ route('user.arr.declare-intrest-business') }}">
     @csrf
     <div class="card dashboard-bg">
         <div class="section active-section card-body" id="section1">
@@ -22,7 +22,7 @@
 </form>
 
 
-<form id="backForm" method="post" action="{{ route('user.rpli.profesional-indeminity') }}">
+<form id="backForm" method="post" action="{{ route('user.arr.profesional-indeminity') }}">
 @csrf
 <input type="hidden" name="back" value="1">
 </form>

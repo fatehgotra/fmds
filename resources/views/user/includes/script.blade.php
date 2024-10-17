@@ -151,3 +151,58 @@
 
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+
+<script>
+  const canvas = document.getElementById('signatureCanvas');
+  const ctx = canvas.getContext('2d');
+  let isDrawing = false;
+
+  // Get the initial blank state of the canvas as a data URL
+  const blankCanvas = canvas.toDataURL();
+
+  // Event listeners for drawing
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseleave', stopDrawing);
+
+  function startDrawing(e) {
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  }
+
+  function draw(e) {
+    if (!isDrawing) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.strokeStyle = '#000';  // Pen color
+    ctx.lineWidth = 2;         // Pen thickness
+    ctx.stroke();
+  }
+
+  function stopDrawing() {
+    isDrawing = false;
+    ctx.closePath();
+  }
+
+  // Function to clear the canvas
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Function to save the signature and check if it exists
+  function saveSignature() {
+    const currentCanvas = canvas.toDataURL();
+
+    if (currentCanvas === blankCanvas) {
+      alert("No signature detected, Please sign in area.");
+    } else {
+          $("#signatureCanvas").hide();
+          $(".hsign").hide();
+          $('.ssign').attr('src',currentCanvas).show();
+          $('#applicant_signature').val(currentCanvas)
+   
+    }
+  }
+</script>
+

@@ -8,39 +8,41 @@
 <div class="card dashboard-bg">
     <div class="section active-section card-body" id="section1">
         <div class="form-group">
-
+            <p>
+                <b class="text-danger">WARNING: False / Fraudulent Claims:</b> In the event of any applicant submitting false or incomplete data, and or copies of certificates, which are found to be false, The Dental Registration authority of the applicant will be notified. The application for registration in Fiji will be unsuccessful; or provisional registration, if already given, will not be confirmed, and may be cancelled. Council/Secretariat may require further information before a decision is made.
+            </p>
             <div class="mb-4">
                 <h5>Supporting Documents Required:</h5>
-                <p class="text-danger"> Note: Documents accepted only images and pdfs would be not more than 10 mb</p>
+                <p class="text-danger"><b> Note: Documents accepted only images and pdfs would be not more than 10 mb</b></p>
                 <table class="table table-bordered">
 
                     <tbody>
                         <tr>
-                            <td class="w-33">Certified copy of basic medical qualification</td>
+                            <td class="w-33">Certified copy of any new qualification gained;</td>
                             <th class="w-33">
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('user.arr.process_doc') }}" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="file" name="basic_medical_qualification" class="form-control mb-2">
+                                    <input type="file" name="new_qualification_gained" class="form-control mb-2">
                                     <button type="submit" class="btn btn-primary">Upload</button>
                                 </form>
                             </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'basic_medical_qualification'])
+                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'new_qualification_gained'])
                         </tr>
                         <tr>
-                            <td>Certified copies of academic transcripts</td>
+                            <td>Certificate of ‘good standing’ from the Medical/Dental Registration authority IF you practised outside of Fiji in the previous year;</td>
                             <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('user.arr.process_doc') }}" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="file" name="academic_transcripts" class="form-control mb-2">
+                                    <input type="file" name="good_standing_certificate" class="form-control mb-2">
                                     <button type="submit" class="btn btn-primary">Upload</button>
                                 </form>
                             </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'academic_transcripts'])
+                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'good_standing_certificate'])
                         </tr>
                         <tr>
                             <td>Copy of Passport Photo (A month Old)</td>
                             <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('user.arr.process_doc') }}" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" name="passport_photo" class="form-control mb-2">
                                     <button type="submit" class="btn btn-primary">Upload</button>
@@ -49,60 +51,28 @@
                             @include('user.application.registration-practice-licence-internship.preview',['key' => 'passport_photo'])
                         </tr>
                         <tr>
-                            <td>Certified copy of letter of completion from University where study has been undertaken (in any place of graduate certificate)</td>
+                            <td>Evidence of Professional Indemnity;</td>
                             <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('user.arr.process_doc') }}" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="file" name="letter_of_completion" class="form-control mb-2">
+                                    <input type="file" name="professional_indemnity_evidence" class="form-control mb-2">
                                     <button type="submit" class="btn btn-primary">Upload</button>
                                 </form>
                             </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'letter_of_completion'])
+                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'professional_indemnity_evidence'])
                         </tr>
                         <tr>
-                            <td>Certified Copy of Any Valid ID</td>
+                            <td>Completed documentation of Continuing Professional Development (‘CPD’) signed by Department Supervisor or Certificates Attained.</td>
                             <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('user.arr.process_doc') }}" enctype="multipart/form-data">
                                     @csrf
-                                    <input type="file" name="valid_id" class="form-control mb-2">
+                                    <input type="file" name="cdp" class="form-control mb-2">
                                     <button type="submit" class="btn btn-primary">Upload</button>
                                 </form>
                             </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'valid_id'])
+                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'cdp'])
                         </tr>
-                        <tr>
-                            <td>Certified Copy of Passport (if any)</td>
-                            <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="file" name="passport" class="form-control mb-2">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                </form>
-                            </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'passport'])
-                        </tr>
-                        <tr>
-                            <td>Certified Copy of Birth Certificate</td>
-                            <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="file" name="birth_certificate" class="form-control mb-2">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                </form>
-                            </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'birth_certificate'])
-                        </tr>
-                        <tr>
-                            <td>Work Permit – Non Fiji Citizen</td>
-                            <th>
-                                <form method="post" action="{{ route('user.rpli.process_doc') }}" enctype="multipart/form-data">
-                                    @csrf
-                                    <input type="file" name="work_permit" class="form-control mb-2">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                </form>
-                            </th>
-                            @include('user.application.registration-practice-licence-internship.preview',['key' => 'work_permit'])
-                        </tr>
+                       
                     </tbody>
                 </table>
                 <p class="text-muted">
@@ -112,15 +82,15 @@
 
 
             <button class="btn btn-dark mt-4" type="button" onclick="{ $('#backForm').submit() }">Back</button>
-            <form action="{{ route('user.rpli.payment') }}">
-            <button type="submit" class="btn btn-primary mt-4 float-end">Next</button>
+            <form action="{{ route('user.arr.payment') }}">
+                <button type="submit" class="btn btn-primary mt-4 float-end">Next</button>
             </form>
         </div>
     </div>
 </div> <!-- container -->
 
 
-<form id="backForm" method="post" action="{{ route('user.rpli.declare-intrest-business') }}">
+<form id="backForm" method="post" action="{{ route('user.arr.declare-intrest-business') }}">
     @csrf
     <input type="hidden" name="back" value="1">
 </form>
