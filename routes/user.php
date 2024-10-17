@@ -19,6 +19,7 @@ use App\Http\Controllers\User\GroupController;
 use App\Http\Controllers\User\AiSuggestionController;
 use App\Http\Controllers\User\Applications\ArrController;
 use App\Http\Controllers\User\Applications\RpliController;
+use App\Http\Controllers\User\Applications\SarController;
 use App\Http\Controllers\User\ApplicationsController;
 use App\Http\Controllers\User\IntegrationController;
 use App\Http\Controllers\User\ReminderController;
@@ -144,6 +145,14 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
             Route::get('payment',[ArrController::class,'payment'])->name('payment');
             Route::post('payment-initiate',[ArrController::class,'paymentInitiate'])->name('payment-initiate');
 
+        });
+
+        //Student Annual Registration
+        //Annual Registration Renewal
+
+        Route::group(['prefix' => 'sar', 'as' => 'sar.'], function () {
+            Route::post('registration',[SarController::class,'personalInfo'])->name('personal-info');
+            Route::post('education',[SarController::class,'Registration'])->name('registration');
         });
         
        

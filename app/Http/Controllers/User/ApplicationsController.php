@@ -39,7 +39,7 @@ class ApplicationsController extends Controller
                 return view('user.application.annual-registration-renewal.personal-info');
                 break;
             case 3:
-                return redirect()->back()->with('error','Application not ready yet.');
+                return view('user.application.student-annual-registration.personal-info');
                 break;
             case 4:
                 return redirect()->back()->with('error','Application not ready yet.');

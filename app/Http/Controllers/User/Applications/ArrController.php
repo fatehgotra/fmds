@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
+use App\Models\ArrApplication;
 use App\Models\RpliApplication;
 use Exception;
 
@@ -205,20 +206,26 @@ class ArrController extends Controller
       'user_id' => $user_id,
       'application_id' => $application_id,
     ];
+   
     $application_data = array_merge(
       $user_app,
       session()->get('personal_info'),
-      session()->get('primary_qualification'),
+      session()->get('employment_practice'),
+      session()->get('renewal_in'),
+      session()->get('previous_year_practise'),
       session()->get('other_qualifications'),
       session()->get('disciplinary_enquiries'),
       session()->get('medical_fitness'),
+      session()->get('profesional_development'),
       session()->get('profesional_indemnity'),
       session()->get('criminal_convictions'),
       session()->get('declare_business_interest'),
       session()->get('applicant_declaration'),
-    );
 
-    RpliApplication::create($application_data);
+    );
+   
+    
+    ArrApplication::create($application_data);
     ApplicantApplications::create([
       'user_id'       => $user_id,
       'application_id'=>$application_id,
@@ -228,11 +235,15 @@ class ArrController extends Controller
     ]);
     
     session()->forget('application_id');
+    session()->forget('application');
     session()->forget('personal_info');
-    session()->forget('primary_qualification');
+    session()->forget('employment_practice');
+    session()->forget('renewal_in');
+    session()->forget('previous_year_practise');
     session()->forget('other_qualifications');
     session()->forget('disciplinary_enquiries');
     session()->forget('medical_fitness');
+    session()->forget('profesional_development');
     session()->forget('profesional_indemnity');
     session()->forget('criminal_convictions');
     session()->forget('declare_business_interest');

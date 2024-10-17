@@ -63,11 +63,15 @@
                 </div>
     
     
-                <button class="btn btn-dark mt-4" onclick="{  }">Back</button>
+                <button class="btn btn-dark mt-4" type="button" onclick="{ $('#backForm').submit() }">Back</button>
                 <button type="submit" class="btn btn-primary mt-4 float-end" >Next</button>
             </div>
         </div>
     </div> <!-- container -->
 </form>
 
+<form id="backForm" method="post" action="{{ route('user.arr.declaration-by-applicant') }}">
+@csrf
+<input type="hidden" name="back" value="1">
+</form>
 @endsection
