@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
+use App\Models\ApplicationStatus;
 use App\Models\RpliApplication;
 use Exception;
 
@@ -161,7 +162,7 @@ class RpliController extends Controller
       'user_id' => auth()->user()->id,
       'application_id' => session()->get('application_id')
     ])->count();
-    if ($count_docs < 8) {
+    if ($count_docs < 5) {
       return redirect()->back()->with('error', 'Please upload all required docs.');
     }
     return view('user.application.registration-practice-licence-internship.payment');
@@ -190,14 +191,23 @@ class RpliController extends Controller
       session()->get('applicant_declaration'),
     );
 
-    RpliApplication::create($application_data);
-    ApplicantApplications::create([
+   $applied =  RpliApplication::create($application_data);
+    $apply = ApplicantApplications::create([
       'user_id'       => $user_id,
-      'application_id'=>$application_id,
+      'application_id' => $application_id,
+      'applied_id' => $applied->id,
       'pay_mode' => $request->pay_mode,
-      'amount'   =>200,
-      'status'   => 'submitted'
+      'amount'   => 200,
     ]);
+    
+    ApplicationStatus::create([
+      'applicant_application_id' => $apply->id,
+      'status' => 'submitted',
+      'actioned_by' => 'user',
+      'actioner_id' => $user_id
+    ]);
+
+    updateApplicationCount($application_id);
     
     session()->forget('application_id');
     session()->forget('personal_info');

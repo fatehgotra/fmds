@@ -17,7 +17,9 @@ use App\Http\Controllers\User\CannedResponseController;
 use App\Http\Controllers\User\GeneralSettingsController;
 use App\Http\Controllers\User\GroupController;
 use App\Http\Controllers\User\AiSuggestionController;
+use App\Http\Controllers\User\ApplicantApplicationsController;
 use App\Http\Controllers\User\Applications\ArrController;
+use App\Http\Controllers\User\Applications\PractitionerController;
 use App\Http\Controllers\User\Applications\RpliController;
 use App\Http\Controllers\User\Applications\SarController;
 use App\Http\Controllers\User\ApplicationsController;
@@ -99,7 +101,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::resource('integration',IntegrationController::class);
 
         Route::post('initiate-application',[ApplicationsController::class,'initiateApplication'])->name('initiate-application');
-        Route::resource('application',ApplicationsController::class);
+        Route::resource('form',ApplicationsController::class);
+        Route::resource('application',ApplicantApplicationsController::class);
 
         //Registration Practice Licence Internship
 
@@ -148,24 +151,45 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         });
 
         //Student Annual Registration
-        //Annual Registration Renewal
-
+      
         Route::group(['prefix' => 'sar', 'as' => 'sar.'], function () {
             Route::post('registration',[SarController::class,'personalInfo'])->name('personal-info');
             Route::post('education',[SarController::class,'Registration'])->name('registration');
+            Route::post('other-acheivement',[SarController::class,'Education'])->name('education');
+            Route::post('medical-fitness',[SarController::class,'otherAcheivement'])->name('other-acheivement');
+            Route::post('criminal-convictions',[SarController::class,'medicalFitness'])->name('medical-fitness');
+            Route::post('applicant-declaration',[SarController::class,'criminalConvictions'])->name('criminal-convictions');
+            Route::post('documents',[SarController::class,'applicantDeclaration'])->name('applicant-declaration');
+            Route::get('documents',[SarController::class,'supportingDocument'])->name('supporting-documents');
+            Route::post('process_doc',[SarController::class,'processDoc'])->name('process_doc');
+
+            Route::get('payment',[SarController::class,'payment'])->name('payment');
+            Route::post('payment-initiate',[SarController::class,'paymentInitiate'])->name('payment-initiate');
         });
+
+        //Practitioner
+
+        Route::group(['prefix' => 'practitioner', 'as' => 'practitioner.'], function () {
+            Route::post('medical-dental-registration',[PractitionerController::class,'personalInfo'])->name('personal-info');
+            Route::post('qualification',[PractitionerController::class,'MdRegistration'])->name('medical-dental-registration');
+            Route::post('registration',[PractitionerController::class,'Qualification'])->name('qualification');
+            Route::post('professional-indemnity',[PractitionerController::class,'Registration'])->name('registration');
+           
+            Route::post('criminal-convictions',[PractitionerController::class,'ProfesionalIndemnity'])->name('profesional-indeminity');
+            Route::post('declare-intrest-business',[PractitionerController::class,'criminalConvictions'])->name('criminal-convictions'); 
+            Route::post('declaration-by-applicant',[PractitionerController::class,'declareIntrestBusiness'])->name('declare-intrest-business');
+            Route::post('documents',[PractitionerController::class,'applicantDeclaration'])->name('declaration-by-applicant');
+            Route::get('documents',[PractitionerController::class,'supportingDocument'])->name('supporting-documents');
+            Route::post('process_doc',[PractitionerController::class,'processDoc'])->name('process_doc');
+
+            Route::get('payment',[PractitionerController::class,'payment'])->name('payment');
+            Route::post('payment-initiate',[PractitionerController::class,'paymentInitiate'])->name('payment-initiate');
+
+        });
+
         
        
     });
-
-    Route::resource('contact',ContactController::class);
-
-    Route::get('contacts/import',[ContactController::class,'import'])->name('import');
-    Route::post('contacts/import-contacts',[ContactController::class,'importContacts'])->name('import-contacts');
-    Route::post('contacts/import-file',[ContactController::class,'importFile'])->name('import-file');
-    Route::get('contacts/export',[ContactController::class,'export'])->name('export');
-    Route::post('contacts/export-contacts',[ContactController::class,'exportContacts'])->name('export-contacts');
-
 
     /*
     |--------------------------------------------------------------------------

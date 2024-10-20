@@ -40,8 +40,8 @@
                         @else
                         <canvas id="signatureCanvas" width="400" height="200"></canvas>
                         <div class="controls hsign">
-                            <button onclick="clearCanvas()">Clear</button>
-                            <button onclick="saveSignature()">Save Signature</button>
+                            <button type="button" onclick="clearCanvas()">Clear</button>
+                            <button type="button" onclick="saveSignature()">Save Signature</button>
                         </div>
                         @endif
 

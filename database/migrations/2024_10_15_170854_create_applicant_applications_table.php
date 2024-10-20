@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('applicant_applications', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('application_id');
+            $table->unsignedBigInteger('applied_id');
             $table->string('pay_mode')->nullable();
+            $table->string('payment_id')->nullable();
             $table->string('amount')->nullable();
-            $table->string('status');
             $table->timestamps();
         });
     }

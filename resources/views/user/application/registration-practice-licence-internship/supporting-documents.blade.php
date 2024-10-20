@@ -6,12 +6,12 @@
 
 
 <div class="card dashboard-bg">
+<h3>10. Supporting Documents Required:</h3>
     <div class="section active-section card-body" id="section1">
         <div class="form-group">
 
             <div class="mb-4">
-                <h5>Supporting Documents Required:</h5>
-                <p class="text-danger"> Note: Documents accepted only images and pdfs would be not more than 10 mb</p>
+                <b class="text-danger"> Note: Documents accepted only images and pdfs would be not more than 10 mb</b>
                 <table class="table table-bordered">
 
                     <tbody>

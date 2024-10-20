@@ -16,4 +16,10 @@ class applicationDocs extends Model
         'file',
         'type'
     ];
+
+    public static function booted() {
+        static::creating(function ($model) {
+            $model->uuid = bin2hex(random_bytes(5));
+        });
+    }
 }

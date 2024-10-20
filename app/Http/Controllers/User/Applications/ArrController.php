@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
+use App\Models\ApplicationStatus;
 use App\Models\ArrApplication;
 use App\Models\RpliApplication;
 use Exception;
@@ -24,36 +25,38 @@ class ArrController extends Controller
   public function personalInfo(Request $request)
   {
     $inputs = $request->except('_token');
-    
+
     if (!isset($request->back) && isset($inputs))
       session()->put('personal_info', $inputs);
     return view('user.application.annual-registration-renewal.employment-places-of-practice');
   }
 
-  public function employmentPractice(Request $request){
-   $inputs = $request->except('_token');
+  public function employmentPractice(Request $request)
+  {
+    $inputs = $request->except('_token');
 
-   if (!isset($request->back) && isset($inputs))
+    if (!isset($request->back) && isset($inputs))
       session()->put('employment_practice', $inputs);
     return view('user.application.annual-registration-renewal.renewal-in');
   }
 
-  public function renewalIn(Request $request){
+  public function renewalIn(Request $request)
+  {
     $inputs = $request->except('_token');
-  
-   if (!isset($request->back) && isset($inputs))
+
+    if (!isset($request->back) && isset($inputs))
       session()->put('renewal_in', $inputs);
     return view('user.application.annual-registration-renewal.previous-year-practice');
   }
 
-  public function previousPractices(Request $request){
+  public function previousPractices(Request $request)
+  {
 
     $inputs = $request->except('_token');
-  
-    if (!isset($request->back) && isset($inputs))
-       session()->put('previous_year_practise', $inputs);
-     return view('user.application.annual-registration-renewal.degree-and-qualification');
 
+    if (!isset($request->back) && isset($inputs))
+      session()->put('previous_year_practise', $inputs);
+    return view('user.application.annual-registration-renewal.degree-and-qualification');
   }
 
   public function otherQualifications(Request $request)
@@ -84,7 +87,8 @@ class ArrController extends Controller
     return view('user.application.annual-registration-renewal.continuing-profesional-development');
   }
 
-  public function professionalDevelopment(Request $request){
+  public function professionalDevelopment(Request $request)
+  {
     $inputs = $request->except('_token');
     if (!isset($request->back) && isset($inputs)) {
       session()->put('profesional_development', $inputs);
@@ -206,7 +210,7 @@ class ArrController extends Controller
       'user_id' => $user_id,
       'application_id' => $application_id,
     ];
-   
+
     $application_data = array_merge(
       $user_app,
       session()->get('personal_info'),
@@ -223,17 +227,26 @@ class ArrController extends Controller
       session()->get('applicant_declaration'),
 
     );
-   
-    
-    ArrApplication::create($application_data);
-    ApplicantApplications::create([
+
+
+    $applied = ArrApplication::create($application_data);
+    $apply = ApplicantApplications::create([
       'user_id'       => $user_id,
-      'application_id'=>$application_id,
+      'application_id' => $application_id,
+      'applied_id' => $applied->id,
       'pay_mode' => $request->pay_mode,
-      'amount'   =>200,
-      'status'   => 'submitted'
+      'amount'   => 200,
     ]);
     
+    ApplicationStatus::create([
+      'applicant_application_id' => $apply->id,
+      'status' => 'submitted',
+      'actioned_by' => 'user',
+      'actioner_id' => $user_id
+    ]);
+
+    updateApplicationCount($application_id);
+
     session()->forget('application_id');
     session()->forget('application');
     session()->forget('personal_info');

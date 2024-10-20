@@ -44,16 +44,11 @@
 
                         </div>
                         <div class="SButton">
-                            @if( is_applied($application->id) )
-                            <button type="button" class="btn btn-success w-100">Applied</button>
-                            @else
                             <form method="post" action="{{ route('user.initiate-application') }}">
                                 @csrf
                                 <input type="hidden" name="application_id" value="{{ $application->id }}">
                                 <button type="submit" class="btn btn-primary w-100">Apply</button>
                             </form>
-                            @endif
-
                         </div>
                     </div>
                     <!-- end card-body -->

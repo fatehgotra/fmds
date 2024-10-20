@@ -5,8 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Models\Applications;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantApplications;
 
-class ApplicationsController extends Controller
+class ApplicantApplicationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,36 +18,25 @@ class ApplicationsController extends Controller
     }
     public function index()
     {
-        $applications = Applications::get();
-        return view('user.application.list', compact('applications'));
-    }
+        $applications = ApplicantApplications::whereUserId(auth()->user()->id)->paginate(10);
 
-    public function initiateApplication(Request $request)
-    {
+        $applications->through(function ($application) {
+            $data = $application->data;
+            $form = $application->application;
+            $statuses = $application->statues();
+            $status = $statuses->orderBy('id','desc')->first();
+            
+            return [
+                'id'         => $application->id,
+                'uuid'       => $application->uuid,
+                'applicant'  => $data?->forename.' '.$data?->othername.' '.$data?->surname,
+                'name'       => $form?->name,
+                'status'     => ucwords($status?->status),
+                'created_at' => $application->created_at
+            ];
+        });
 
-        $id = $request->application_id;
-        $application = Applications::find($id);
-        if( is_null($application) ){
-            return redirect()->back()->with('error','Application not found');
-        }
-        session()->put('application',$application);
-        session()->put('application_id',$id);
-        switch ($id) {
-            case 1:
-                return view('user.application.registration-practice-licence-internship.personal-info',compact('application'));
-                break;
-            case 2:
-                return view('user.application.annual-registration-renewal.personal-info');
-                break;
-            case 3:
-                return view('user.application.student-annual-registration.personal-info');
-                break;
-            case 4:
-                return view('user.application.practitioner.personal-info');
-                break;
-            default:
-        }
-
+        return view('user.applied.list', compact('applications'));
     }
 
     /**

@@ -17,7 +17,6 @@
                         <option value="Anz">Transfer Credit on our ANZ Account # 10737532</option>
                         <option value="bsp">Bank of south pacific gateway (BSP)</option>
                     </select>
-                    <small class="text-muted">Note: For a complete application, the applicable fee for registration/license must be paid and attached with this renewal form.</small>
                 </div>
     
                 <!-- Fee Schedule Table -->

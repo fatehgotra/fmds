@@ -3,6 +3,7 @@
 use App\Models\Administrator;
 use App\Models\ApplicantApplications;
 use App\Models\applicationDocs;
+use App\Models\Applications;
 use App\Models\ChatBoxMessage;
 use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
@@ -338,4 +339,10 @@ function is_applied($application_id)
     ])->first();
 
     return !is_null($application) ? true : false;
+}
+
+function updateApplicationCount($application_id){
+   $application = Applications::find($application_id);
+   $application->applicants += 1;
+   $application->save();
 }

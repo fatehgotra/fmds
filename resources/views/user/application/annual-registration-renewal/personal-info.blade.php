@@ -31,6 +31,9 @@
                             </label>
                         </div>
                     </div>
+                     <small><b class="text-danger">If “YES” – INDEMNITY INSURANCE will be required for ANNUAL PRACTICE LICENSE.</p></small>
+                    <small><b class="text-danger">If “NO” – INDEMNITY INSURANCE is not required and Registration can be maintained.,</b></small>
+                    (Refer to Sec 10 of Form)
                 </div>
                 <hr>
 

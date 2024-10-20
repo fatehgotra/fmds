@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rpli_applications', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger("user_id");
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger("application_id");
@@ -44,6 +45,17 @@ return new class extends Migration
             $table->string("date_completed_program")->nullable();
             $table->string("other_degree")->nullable();
             $table->string("other_language_course")->nullable();
+
+             $table->string("disciplinary_date1")->nullable();
+             $table->string("disciplinary_country1")->nullable();
+             $table->string("disciplinary_outcome1")->nullable();
+             $table->string("disciplinary_date2")->nullable();
+             $table->string("disciplinary_country2")->nullable();
+             $table->string("disciplinary_outcome2")->nullable();
+             $table->string("disciplinary_date3")->nullable();
+             $table->string("disciplinary_country3")->nullable();
+             $table->string("disciplinary_outcome3")->nullable();
+
             $table->string("disciplinary_date")->nullable();
             $table->string("disciplinary_country")->nullable();
             $table->string("disciplinary_outcome")->nullable();
@@ -54,6 +66,8 @@ return new class extends Migration
             $table->string("criminal_conviction")->nullable();
             $table->longText("criminal_details")->nullable();
             $table->string("business_interest")->nullable();
+            $table->longText("applicant_signature")->nullable();
+            $table->string("applicant_declaration_date", 100)->nullable();
             $table->string("declare_name")->nullable();
             $table->string("declare_place")->nullable();
             $table->timestamps();

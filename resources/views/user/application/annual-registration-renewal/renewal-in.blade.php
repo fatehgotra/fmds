@@ -13,7 +13,7 @@
                 <div class="row mb-3">
                     <div class="col-md-12">
                         <label class="form-label required">Category[s] of Registration / Licence sought:</label>
-                        <textarea name="registration_categories" value="{{ old('registration_categories',app_value('renewal_in','registration_categories')) }}" class="form-control" placeholder="Enter Categorie[s]/ Licence sought" required>{{ old('registration_categories',app_value('renewal_in','registration_categories')) }}</textarea>
+                        <!-- <textarea name="registration_categories" value="{{ old('registration_categories',app_value('renewal_in','registration_categories')) }}" class="form-control" placeholder="Enter Categorie[s]/ Licence sought" required>{{ old('registration_categories',app_value('renewal_in','registration_categories')) }}</textarea> -->
                     </div>
                 </div>
                 <div class="row mb-3">

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('arr_applications', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->unsignedBigInteger("application_id");
