@@ -21,17 +21,20 @@ class ApplicantApplicationsController extends Controller
         $applications = ApplicantApplications::whereUserId(auth()->user()->id)->paginate(10);
 
         $applications->through(function ($application) {
+
             $data = $application->data;
             $form = $application->application;
             $statuses = $application->statues();
-            $status = $statuses->orderBy('id','desc')->first();
-            
+            $status = $application->statues()->orderBy('id', 'desc')->first();
+
             return [
                 'id'         => $application->id,
                 'uuid'       => $application->uuid,
-                'applicant'  => $data?->forename.' '.$data?->othername.' '.$data?->surname,
+                'applicant'  => $data?->forename . ' ' . $data?->othername . ' ' . $data?->surname,
                 'name'       => $form?->name,
-                'status'     => ucwords($status?->status),
+                'all_statuses' => $statuses->get(),
+                'status' => $status,
+                'status'     => ucwords($statuses->orderBy('id', 'desc')->first()?->status),
                 'created_at' => $application->created_at
             ];
         });

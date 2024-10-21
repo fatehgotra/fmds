@@ -82,7 +82,6 @@
                                 <td>
                                     <span class="badge bg-success p-1">{{ $application['status'] }}</span>
                                 </td>
-                              
 
                                 <td class="table-action align-middle">
 
@@ -99,8 +98,8 @@
                                             <a href="{{ route('user.application.show',$application['uuid']) }}"
                                                 class="dropdown-item">View</a>
                                             <!-- item-->
-                                            <a href="javascript:void(0)"
-                                                class="dropdown-item">Track status</a>
+                                            <a href="javascript:void(0)" statues="{{ json_encode($application['all_statuses']) }}"
+                                                class="dropdown-item track_status">Track status</a>
                                             <!-- item-->
                                             <a target="_blank" href="{{ route('user.team.intend-login',$application['uuid']) }}"
                                                 class="dropdown-item">Download certificate</a>
@@ -133,9 +132,68 @@
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="timelineModal" tabindex="-1" role="dialog" aria-labelledby="timelineModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="timelineModalLabel">Timeline</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="timeline">
+                    <div class="timeline-card left">
+                        <div class="timeline-date">Submitted on: 12th October 2024</div>
+                        <div class="timeline-title">Step 1: Application Submitted</div>
+                    </div>
+                    <div class="timeline-card right">
+                        <div class="timeline-date">Reviewed on: 14th October 2024</div>
+                        <div class="timeline-title">Step 2: Application Reviewed</div>
+                    </div>
+                    <div class="timeline-card left">
+                        <div class="timeline-date">Scheduled for: 16th October 2024</div>
+                        <div class="timeline-title">Step 3: Interview Scheduled</div>
+                    </div>
+                    <div class="timeline-card right">
+                        <div class="timeline-date">Decision made on: 20th October 2024</div>
+                        <div class="timeline-title">Step 4: Final Decision</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 @push('scripts')
 
+<script>
+    jQuery(document).ready(function($) {
+        $('.track_status').on('click', function(e) {
+            var statues = JSON.parse($(this).attr('statues'));
+            if (statues.length > 0) {
+                let li = '';
+                statues?.forEach((s, i) => {
+                    let pos = (i + 1) % 2 == 0 ? 'right' : 'left';
+                    li += `  <div class="timeline-card ${pos}">
+                        <div class="timeline-date">Updated on: ${s.created_at}</div>
+                        <div class="timeline-title">Stage ${i+1}: ${s.status}</div>
+                    </div>`;
+                });
+
+                $('.timeline').children().remove();
+                $('.timeline').append(li);
+                $('#timelineModal').modal('show');
+            }
+        });
+    });
+</script>
 <script>
     $(function() {
         $("#basic-datatable").dataTable({
